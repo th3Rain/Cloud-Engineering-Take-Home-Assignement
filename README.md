@@ -57,3 +57,29 @@ Please submit your assignment by sharing the following:
 - A link to your GitHub repository containing the required code and documentation.
 - The URL where the API is deployed and accessible.
 - A link to the GitHub Actions run that successfully deployed the infrastructure and API.
+
+## Project Directory Structure
+Cloud-Engineering-Take-Home-Assignement/
+│
+├── api/
+│   ├── app.py                  # The Flask API implementation
+│   ├── requirements.txt        # Python dependencies
+│   └── Dockerfile              # Dockerfile to containerize the API
+│
+├── terraform/
+│   ├── main.tf                 # Main Terraform configuration file
+│   ├── variables.tf            # Variables used in Terraform
+│   ├── outputs.tf              # Output variables from Terraform
+│   ├── provider.tf             # Provider configurations (e.g., GCP)
+│   ├── kubernetes.tf           # Kubernetes resources (Deployment, Service, etc.)
+│   ├── network.tf              # Networking resources (VPC, NAT Gateway, etc.)
+│   ├── iam.tf                  # IAM roles and policies
+│   └── terraform.tfvars        # Variable values
+│
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml           # GitHub Actions workflow file for CI/CD
+│
+├── .gitignore                  # Git ignore file
+├── README.md                   # Project documentation
+└── LICENSE                     # License file (optional)
