@@ -59,7 +59,10 @@ Please submit your assignment by sharing the following:
 - A link to the GitHub Actions run that successfully deployed the infrastructure and API.
 
 ## Project Directory Structure
-Cloud-Engineering-Take-Home-Assignement/
+# Project Directory Structure
+
+```plaintext
+cloud-engineering-take-home-assignment/
 │
 ├── api/
 │   ├── app.py                  # The Flask API implementation
