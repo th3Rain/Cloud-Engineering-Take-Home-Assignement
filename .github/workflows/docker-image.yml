@@ -23,19 +23,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2.1.4
         with:
           credentials_json: ${{ secrets.GCR_SA }}
-          project_id: ${{ env.GCP_PROJECT_ID }}
+          project_id: ${{ vars.GCP_PROJECT_ID }}
 
       - name: Configure Docker for Google Container Registry
         run: gcloud auth configure-docker
 
       - name: Build Docker image
         run: |
-          docker build -t gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:latest ./app
-          docker push gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:latest
+          docker build -t gcr.io/${{ vars.GCP_PROJECT_ID }}/${{ vars.IMAGE_NAME }}:latest ./app
+          docker push gcr.io/${{ vars.GCP_PROJECT_ID }}/${{ vars.IMAGE_NAME }}:latest
 
