@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'app/**'
+      - 'api/**'
       - '.github/workflows/**'
 
   pull_request:
@@ -35,6 +35,6 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t gcr.io/${{ vars.GCP_PROJECT_ID }}/${{ vars.IMAGE_NAME }}:latest ./app
+          docker build -t gcr.io/${{ vars.GCP_PROJECT_ID }}/${{ vars.IMAGE_NAME }}:latest ./api
           docker push gcr.io/${{ vars.GCP_PROJECT_ID }}/${{ vars.IMAGE_NAME }}:latest
 
