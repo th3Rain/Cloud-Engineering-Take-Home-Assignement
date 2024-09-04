@@ -29,6 +29,17 @@ jobs:
           credentials_json: ${{ secrets.GCR_SA }}
           project_id: ${{ vars.GCP_PROJECT_ID }}
 
+      - name: Check if Service Usage API is enabled
+        id: check-service-usage-api
+        run: |
+          SERVICE_USAGE_API_STATUS=$(gcloud services list --enabled --filter="serviceusage.googleapis.com" --format="value(serviceConfig.name)")
+          if [ -z "$SERVICE_USAGE_API_STATUS" ]; then
+            echo "Service Usage API is not enabled. Enabling it..."
+            gcloud services enable serviceusage.googleapis.com
+          else
+            echo "Service Usage API is already enabled."
+          fi
+
       - name: Check if Container Registry API is enabled
         id: check-gcr-api
         run: |
