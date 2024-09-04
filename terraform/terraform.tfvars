@@ -1,0 +1,7 @@
+project_id            = "heroic-arbor-434212-i0"
+region                = "us-central1"
+zone                  = "us-central1-a"
+cluster_name          = "shortlet-autopilot-cluster"
+network_name          = "shortlet-network"
+subnet_name           = "shortlet-subnetwork"
+service_account_email = "oyemprince@gmail.com"
