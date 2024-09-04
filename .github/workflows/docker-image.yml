@@ -23,33 +23,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2.1.4
         with:
           credentials_json: ${{ secrets.GCR_SA }}
           project_id: ${{ vars.GCP_PROJECT_ID }}
-
-      - name: Check if Service Usage API is enabled
-        id: check-service-usage-api
-        run: |
-          SERVICE_USAGE_API_STATUS=$(gcloud services list --enabled --filter="serviceusage.googleapis.com" --format="value(serviceConfig.name)")
-          if [ -z "$SERVICE_USAGE_API_STATUS" ]; then
-            echo "Service Usage API is not enabled. Enabling it..."
-            gcloud services enable serviceusage.googleapis.com
-          else
-            echo "Service Usage API is already enabled."
-          fi
-
-      - name: Check if Container Registry API is enabled
-        id: check-gcr-api
-        run: |
-          GCR_API_STATUS=$(gcloud services list --enabled --filter="containerregistry.googleapis.com" --format="value(serviceConfig.name)")
-          if [ -z "$GCR_API_STATUS" ]; then
-            echo "Container Registry API is not enabled. Enabling it..."
-            gcloud services enable containerregistry.googleapis.com
-          else
-            echo "Container Registry API is already enabled."
-          fi
 
       - name: Configure Docker for Google Container Registry
         run: gcloud auth configure-docker
