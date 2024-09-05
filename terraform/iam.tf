@@ -6,7 +6,7 @@ resource "google_service_account" "gke_sa" {
 
 resource "google_project_iam_binding" "gke_sa_binding" {
   project = var.project_id
-  role    = "roles/storage.objectViewer"  # Required to pull images from GCR
+  role    = "roles/storage.objectViewer" # Required to pull images from GCR
 
   members = [
     "serviceAccount:${google_service_account.gke_sa.email}"

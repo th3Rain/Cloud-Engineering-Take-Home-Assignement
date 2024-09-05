@@ -9,7 +9,7 @@ resource "kubernetes_namespace" "shortletapp" {
 resource "kubernetes_deployment" "api_deployment" {
   metadata {
     name      = "curtimeapi-deployment"
-    namespace = kubernetes_namespace.shortletapp.metadata[0].name
+    namespace = kubernetes_namespace.shortletapp.metadata[0].name  # Corrected with [0]
   }
 
   spec {
@@ -91,7 +91,7 @@ resource "kubernetes_deployment" "api_deployment" {
 resource "kubernetes_service" "api_service" {
   metadata {
     name      = "curtimeapi-service"
-    namespace = kubernetes_namespace.shortletapp.metadata[0].name
+    namespace = kubernetes_namespace.shortletapp.metadata[0].name  # Corrected with [0]
   }
 
   spec {
@@ -112,14 +112,14 @@ resource "kubernetes_service" "api_service" {
 resource "kubernetes_horizontal_pod_autoscaler_v2" "api_hpa" {
   metadata {
     name      = "currenttime-api-hpa"
-    namespace = kubernetes_namespace.shortletapp.metadata[0].name
+    namespace = kubernetes_namespace.shortletapp.metadata[0].name  # Corrected with [0]
   }
 
   spec {
     scale_target_ref {
       api_version = "apps/v1"
       kind        = "Deployment"
-      name        = kubernetes_deployment.api_deployment.metadata[0].name
+      name        = kubernetes_deployment.api_deployment.metadata[0].name  # Corrected with [0]
     }
 
     min_replicas = 1
@@ -131,7 +131,7 @@ resource "kubernetes_horizontal_pod_autoscaler_v2" "api_hpa" {
       resource {
         name = "cpu"
         target {
-          type     = "Utilization"
+          type                = "Utilization"
           average_utilization = 80  # Trigger scale up when CPU usage is over 80%
         }
       }
@@ -143,7 +143,7 @@ resource "kubernetes_horizontal_pod_autoscaler_v2" "api_hpa" {
       resource {
         name = "memory"
         target {
-          type     = "Utilization"
+          type                = "Utilization"
           average_utilization = 80  # Trigger scale up when Memory usage is over 80%
         }
       }

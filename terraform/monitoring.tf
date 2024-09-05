@@ -13,8 +13,8 @@ resource "google_monitoring_uptime_check_config" "api_uptime_check" {
     type = "k8s_pod"
     labels = {
       project_id   = var.project_id
-      location     = google_container_cluster.default.location
-      cluster_name = google_container_cluster.default.name
+      location     = google_container_cluster.kubernetes_cluster.location
+      cluster_name = google_container_cluster.kubernetes_cluster.name
       namespace_id = kubernetes_namespace.shortletapp.metadata[0].name
     }
   }

@@ -4,12 +4,12 @@ resource "google_container_registry" "registry" {
 
 resource "google_project_service" "gke" {
   project = var.project_id
-  service = "container.googleapis.com"  # Enables the GKE API
+  service = "container.googleapis.com" # Enables the GKE API
 }
 
 resource "google_project_service" "compute" {
   project = var.project_id
-  service = "compute.googleapis.com"  # Enables the Compute Engine API (required by GKE)
+  service = "compute.googleapis.com" # Enables the Compute Engine API (required by GKE)
 }
 
 resource "google_project_service" "cloudresourcemanager" {
