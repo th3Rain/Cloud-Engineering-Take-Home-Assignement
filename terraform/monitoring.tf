@@ -28,6 +28,7 @@ resource "google_monitoring_notification_channel" "email_notification" {
 
   labels = {
     email_address = var.service_account_email
+
   }
 }
 
